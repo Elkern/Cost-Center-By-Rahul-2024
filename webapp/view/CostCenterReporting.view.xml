@@ -17,7 +17,7 @@
             <lf:formElements>
             <lf:FormElement >
             <lf:fields>
-            <Title id="tPrdId">
+            <Title id="tPrdId" >
             <layoutData>
             <l:GridData indent="L0 M0 S0" span="L1 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
             </layoutData>
