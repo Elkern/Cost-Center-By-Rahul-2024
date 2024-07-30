@@ -1,0 +1,110 @@
+<mvc:View xmlns:internal="sap.landvisz.internal"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:sv="sap.ui.comp.smartvariants"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:lf = "sap.ui.layout.form"
+    xmlns:sf="sap.ui.comp.smartfilterbar" controllerName="rahul.controller.CostCenterReporting" displayBlock="true">
+    <Page title="{i18n>title.CostCenterDetails}">
+        <content>
+            <lf:Form >
+            <lf:layout>
+            <lf:ResponsiveGridLayout  columnsL="2" columnsM="1" emptySpanM="1" emptySpanL="1" labelSpanL="2" labelSpanM="2"/>
+            </lf:layout>
+            <lf:FormContainer >
+            <lf:formElements>
+            <lf:FormElement >
+            <lf:fields>
+            <Title id="tPrdId">
+            <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L1 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+            </Title>
+              <Button id="bEdit" press="onEdit" type="Emphasized" text="Edit">
+            <layoutData>
+            <l:GridData indent="L9 M9 S9" span="L1 M1 S1"  linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+            </Button>
+             <Button id="bDel" press="onDel"  text="Delete" type="Transparent" >
+            <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L1 M2 S2"  linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+            </Button>
+               <FlexBox class="verticalSpacer" />
+            <Label text="Product Id:" class="sapUiSmallMarginBottom">
+             <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M2 S2"  linebreakL="true" linebreakM="true" linebreakS="true" ></l:GridData>
+            </layoutData>
+            </Label>
+               <HBox >
+                <Text id="tProdId" />
+                    <layoutData>
+                   <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false"></l:GridData>
+                    </layoutData>
+                 </HBox>
+            <Label text="Product Name:" class="sapUiSmallMarginBottom">
+             <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M2 S2"  linebreakL="true" linebreakM="true" linebreakS="true" ></l:GridData>
+            </layoutData>
+            </Label>
+            <HBox>
+            <Text id="tProdNm"/>
+             <Input id="iProdId2"  visible="false"/>
+            <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+            </HBox>
+            <Label text="Customer Name:" class="sapUiSmallMarginBottom">
+             <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M2 S2"  linebreakL="true" linebreakM="true" linebreakS="true" ></l:GridData>
+            </layoutData>
+            </Label>
+            <HBox>
+            <Text id="tCustNm"/>
+            <Input id="iProdId3"  visible="false"/>
+            <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+            </HBox>
+            <Label text="Cost Price:" class="sapUiSmallMarginBottom">
+             <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M2 S2"  linebreakL="true" linebreakM="true" linebreakS="true" ></l:GridData>
+            </layoutData>
+            </Label>
+            <HBox >
+            <Text id="tCostPr"/>
+            <Input id="iProdId4"  visible="false"/>
+            <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+            </HBox>
+            <Label text="Sales Price:" class="sapUiSmallMarginBottom">
+             <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M2 S2"  linebreakL="true" linebreakM="true" linebreakS="true" ></l:GridData>
+            </layoutData>
+            </Label>
+            <HBox>
+            <Text id="tSalePr"/>
+            <Input id="iProdId5"  visible="false"/>
+            <layoutData>
+            <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
+            </layoutData>
+          </HBox>
+            </lf:fields>
+            </lf:FormElement>
+            </lf:formElements>
+            </lf:FormContainer>
+            </lf:Form>
+        </content>
+        <footer>
+        <Bar >
+        <contentRight>
+        <Button id="bSave" type="Emphasized" press="onUpdate" text="Save" visible="false"/>
+        <Button id="bCancel" type="Reject" press="onCancel" text="Cancel" visible="false"/>
+        </contentRight>
+        </Bar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns:m="sap.ui.model"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m">
+
+    <Dialog id="myDialog" title="Create Record" >
+        <content>
+            <f:SimpleForm
+                id="mySimpleForm"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanL="4"
+                labelSpanM="4"
+                emptySpanL="3"
+                emptySpanM="3"
+                columnsL="3"
+                columnsM="3"
+                width="100%">
+
+                <f:content>
+                    <Label text="Product ID" />
+                    <Input id="prodId" type="Number" />
+
+                    <Label text="Product Name" />
+                    <Input id="prodNm" />
+
+                    <Label text="Customer Name" />
+                    <Input id="Cust_Nm" />
+
+                    <Label text="Cost Price" />
+                    <Input id="Cost_Pr" type="Number" />
+
+                    <Label text="Sales Price" />
+                    <Input id="Sales_Pr" type="Number" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <buttons>
+            <Button text="Save" type="Emphasized" press="onSavePress" />
+            <Button text="Cancel" press="onCancelPress" />
+        </buttons>
+    </Dialog>
+
+</core:FragmentDefinition>
