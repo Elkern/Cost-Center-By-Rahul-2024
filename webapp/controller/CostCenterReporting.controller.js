@@ -15,8 +15,6 @@ sap.ui.define([
                 //ALT
                 //  sap.ui.core.UIComponent.getRouterFor(this).getRoute("CostCenterReporting").attachPatternMatched(this._onRouteHandle,this);
                 that.getOwnerComponent().getRouter().getRoute("CostCenterReporting").attachPatternMatched(that._onRouteHandle, that);
-
-
             },
             _onRouteHandle: function (oEvent) {
                 sap.ui.core.BusyIndicator.show(0);
@@ -44,7 +42,6 @@ sap.ui.define([
                 this.toggleFields("tSalePr", "iProdId5", true);
                 this.toggleButtons(true);
             },
-
             onCancel: function () {
                 this.toggleFields("tProdNm", "iProdId2", false);
                 this.toggleFields("tCustNm", "iProdId3", false);
@@ -52,18 +49,15 @@ sap.ui.define([
                 this.toggleFields("tSalePr", "iProdId5", false);
                 this.toggleButtons(false);
             },
-
             toggleFields: function (field1, field2, visible) {
                 let value = this.byId(field1).getText();
                 this.byId(field1).setVisible(!visible);
                 this.byId(field2).setValue(value).setVisible(visible);
             },
-
             toggleButtons: function (visible) {
                 this.getView().byId("bSave").setVisible(visible);
                 this.getView().byId("bCancel").setVisible(visible);
             },
-
             onDel: function(){
                var prdKey = that.getView().byId("tProdId").getText();
                 that.getView().getModel().remove("/Y24_C_TEST(product_id='" + prdKey + "')",{
@@ -73,11 +67,9 @@ sap.ui.define([
                        },2)
                         let oRouter = that.getOwnerComponent().getRouter();
                         oRouter.navTo("View1");
-
                     }
                 })
             },
-
             onUpdate: function () {
                 // that.getModel().update("Y24_C_TEST(product_id='" + sFormattedProductId + "'),")
                 let sObj = {
@@ -87,8 +79,6 @@ sap.ui.define([
                     cost_price: that.getView().byId("iProdId4").getValue(),
                     sales_price: that.getView().byId("iProdId5").getValue()
                 }
-
-
                 let prdKey = ("00" + sObj.product_id).slice(-2);
                 that.getView().getModel().update("/Y24_C_TEST(product_id='" + prdKey + "')", sObj, {
                     success: function () {
@@ -100,8 +90,6 @@ sap.ui.define([
                         oRouter.navTo("View1");
                     }
                 })
-
             }
-
         });
     });
