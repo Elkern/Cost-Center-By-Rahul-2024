@@ -16,6 +16,7 @@ sap.ui.define([
                 //  sap.ui.core.UIComponent.getRouterFor(this).getRoute("CostCenterReporting").attachPatternMatched(this._onRouteHandle,this);
                 that.getOwnerComponent().getRouter().getRoute("CostCenterReporting").attachPatternMatched(that._onRouteHandle, that);
             },
+          
             _onRouteHandle: function (oEvent) {
                 sap.ui.core.BusyIndicator.show(0);
                 var sObjectId = oEvent.getParameter("arguments").obj_id;

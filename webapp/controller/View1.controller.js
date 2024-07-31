@@ -32,10 +32,17 @@ sap.ui.define([
                 //  })
 
                //ALT 2 More appropriate for operations like delete
-                     that.getView().byId("stTable").getSelectedItems().forEach(function(oSelectedItem){
+                  that.getView().byId("stTable").getSelectedItems().forEach(function(oSelectedItem){
                   that.getView().getModel().remove(oSelectedItem.getBindingContext().getPath());
                      })
                   sap.m.MessageToast.show("Record deleted successfully");
+            },
+            fnNumeric:function(oEvent){
+             oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^0-9]/g, ''));
+            
+            },
+            fnChar: function(){
+             oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^a-zA-Z]/g, ''));
             },
             onChagnefupl: function(oEvent){
                 let filePath  = oEvent.getParameter("files")[0];  //It fetches parameters of files (Name,Size,Type)

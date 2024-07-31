@@ -19,7 +19,7 @@
 
                 <f:content>
                     <Label text="Product ID" />
-                    <Input id="prodId" type="Number" />
+                    <Input id="prodId" liveChange="fnNumeric"/>
 
                     <Label text="Product Name" />
                     <Input id="prodNm" />
