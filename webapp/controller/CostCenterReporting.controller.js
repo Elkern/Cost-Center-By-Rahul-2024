@@ -16,6 +16,7 @@ sap.ui.define([
                 //  sap.ui.core.UIComponent.getRouterFor(this).getRoute("CostCenterReporting").attachPatternMatched(this._onRouteHandle,this);
                 that.getOwnerComponent().getRouter().getRoute("CostCenterReporting").attachPatternMatched(that._onRouteHandle, that);
             },
+            
           
             _onRouteHandle: function (oEvent) {
                 sap.ui.core.BusyIndicator.show(0);
@@ -23,12 +24,17 @@ sap.ui.define([
                 let sFormattedProductId = ("00" + sObjectId).slice(-2);
                 that.getView().getModel().read("/Y24_C_TEST(product_id='" + sFormattedProductId + "')", {
                     success: function (oData) {
+                       
                         that.getView().byId("tPrdId").setText(oData.product_id)
                         that.getView().byId("tProdId").setText(oData.product_id)
                         that.getView().byId("tProdNm").setText(oData.product_nm)
                         that.getView().byId("tCustNm").setText(oData.customer_nm)
                         that.getView().byId("tCostPr").setText(oData.cost_price)
                         that.getView().byId("tSalePr").setText(oData.sales_price)
+                        that.toggleFields("tProdNm", "iProdId2", false);
+                        that.toggleFields("tCustNm", "iProdId3", false);
+                        that.toggleFields("tCostPr", "iProdId4", false);
+                        that.toggleFields("tSalePr", "iProdId5", false);
                         sap.ui.core.BusyIndicator.hide();
                     },
                     error: function () {
@@ -36,6 +42,13 @@ sap.ui.define([
                     }
                 });
             },
+            fnNumeric:function(oEvent){
+                oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^0-9]/g, ''));
+               
+               },
+               fnChar: function(oEvent){
+                oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^a-zA-Z\s]]/g, ''));
+               },
             onEdit: function () {
                 this.toggleFields("tProdNm", "iProdId2", true);
                 this.toggleFields("tCustNm", "iProdId3", true);

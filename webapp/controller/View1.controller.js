@@ -22,6 +22,7 @@ sap.ui.define([
                  oRoute.navTo("CostCenterReporting",{
                    obj_id : InputValue1
                  });
+                 
             },
             onPressDelete:function(){
 
@@ -41,9 +42,10 @@ sap.ui.define([
              oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^0-9]/g, ''));
             
             },
-            fnChar: function(){
-             oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^a-zA-Z]/g, ''));
+            fnChar: function(oEvent){
+             oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^a-zA-Z\s]]/g, ''));
             },
+           
             onChagnefupl: function(oEvent){
                 let filePath  = oEvent.getParameter("files")[0];  //It fetches parameters of files (Name,Size,Type)
                 let contentReader = new FileReader();         //Inbuild class needed to read any file
@@ -71,9 +73,7 @@ sap.ui.define([
                                 }
                             };
                             contentReader.readAsBinaryString(filePath);   //(2)
-
             },
-        
             onExcelUpload:function(){
              
                     let contentReader = new FileReader();         //Inbuild class needed to read any file
@@ -122,6 +122,14 @@ sap.ui.define([
             },
             onCancelPress: function () {
                     that._oDialog.close();
+                   // findAggregatedObjects() is a method available on UI5 controls that retrieves all the child controls (aggregated objects) that are part of the control instance.
+                    var aInputs = that._oDialog.findAggregatedObjects("content"); // Get all content of the dialog
+                    aInputs.forEach(function (oInput) {
+                        if (oInput.setValue) { // Check if the control has setValue method
+                            oInput.setValue(""); // Clear the input field
+                        }
+                    });
+
             },
             onSavePress: function(){
                 let fragObj = {

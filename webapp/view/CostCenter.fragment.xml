@@ -19,19 +19,19 @@
 
                 <f:content>
                     <Label text="Product ID" />
-                    <Input id="prodId" liveChange="fnNumeric"/>
+                    <Input id="prodId" maxLength="6" liveChange="fnNumeric"/>
 
                     <Label text="Product Name" />
-                    <Input id="prodNm" />
+                    <Input id="prodNm" maxLength="20" liveChange="fnChar"/>
 
                     <Label text="Customer Name" />
-                    <Input id="Cust_Nm" />
+                    <Input id="Cust_Nm" maxLength="30" liveChange="fnChar" />
 
                     <Label text="Cost Price" />
-                    <Input id="Cost_Pr" type="Number" />
+                    <Input id="Cost_Pr" maxLength="5" liveChange="fnNumeric"   />
 
                     <Label text="Sales Price" />
-                    <Input id="Sales_Pr" type="Number" />
+                    <Input id="Sales_Pr" maxLength="5" liveChange="fnNumeric"  />
                 </f:content>
             </f:SimpleForm>
         </content>

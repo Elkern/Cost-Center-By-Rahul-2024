@@ -51,7 +51,7 @@
             </Label>
             <HBox>
             <Text id="tProdNm"/>
-             <Input id="iProdId2"  visible="false"/>
+             <Input id="iProdId2" maxLength="20" liveChange="fnChar" visible="false"/>
             <layoutData>
             <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
             </layoutData>
@@ -63,7 +63,7 @@
             </Label>
             <HBox>
             <Text id="tCustNm"/>
-            <Input id="iProdId3"  visible="false"/>
+            <Input id="iProdId3" maxLength="30" liveChange="fnChar" visible="false"/>
             <layoutData>
             <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
             </layoutData>
@@ -75,7 +75,7 @@
             </Label>
             <HBox >
             <Text id="tCostPr"/>
-            <Input id="iProdId4"  visible="false"/>
+            <Input id="iProdId4" liveChange="fnNumeric" maxLength="5"  visible="false"/>
             <layoutData>
             <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
             </layoutData>
@@ -87,7 +87,7 @@
             </Label>
             <HBox>
             <Text id="tSalePr"/>
-            <Input id="iProdId5"  visible="false"/>
+            <Input id="iProdId5" liveChange="fnNumeric" maxLength="5" visible="false"/>
             <layoutData>
             <l:GridData indent="L0 M0 S0" span="L2 M1 S1" linebreakL="false" linebreakM="false" linebreakS="false" ></l:GridData>
             </layoutData>
