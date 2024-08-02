@@ -2,13 +2,14 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/export/Spreadsheet",
    
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Fragment,MessageBox) {
+    function (Controller, Fragment,MessageBox,Spreadsheet) {
         "use strict";
         let that="";
         return Controller.extend("rahul.controller.View1", {
@@ -24,6 +25,64 @@ sap.ui.define([
                  });
                  
             },
+            onDownloadExcelTemplate: function() {
+                // Define the column configuration
+                var aCols = this.createColumnConfig();
+                var oBinding1 = this.getView().getModel().getBindings("/");
+                oBinding1.length= 1;
+                // var oBinding1= [];
+    
+                // Create settings for the spreadsheet
+                var oSettings = {
+                    fileName: "Template.xlsx",
+                    workbook: { 
+                        columns: aCols,
+                        context: {
+                            application: "Data Entry Application",
+                            sheetName: "Template"
+                        } 
+                    },
+                    dataSource: oBinding1
+                };
+    
+                // Create a new Spreadsheet instance
+                var oSheet = new Spreadsheet(oSettings);
+                oSheet.build()
+                    .then(function() {
+                        sap.m.MessageToast.show('Spreadsheet template has been created and is ready for download.');
+                    })
+                    .finally(function() {
+                        oSheet.destroy(); // Clean up
+                    });
+            },
+    
+            createColumnConfig: function() {
+                return [
+                    {
+                        label: 'Name', // Header displayed in Excel
+                        property: 'name', // Property name for the data (not used for empty data)
+                        type: 'string' // Data type
+                    },
+                    {
+                        label: 'Email',
+                        property: 'email',
+                        type: 'string'
+                    },
+                    {
+                        label: 'Age',
+                        property: 'age',
+                        type: 'number'
+                    },
+                    {
+                        label: 'Address',
+                        property: 'address',
+                        type: 'string'
+                    }
+                    // Add more columns as needed
+                ];
+            },
+    
+            
             onPressDelete:function(){
 
                 //ALT 1
@@ -74,35 +133,35 @@ sap.ui.define([
                             };
                             contentReader.readAsBinaryString(filePath);   //(2)
             },
-            onExcelUpload:function(){
+            // onExcelUpload:function(){
              
-                    let contentReader = new FileReader();         //Inbuild class needed to read any file
-                    contentReader.onload = function(oEvent){   //File will load from oEvent with params here in this oEvent(1)
-                        let data = oEvent.target.result;         //(3)This holds the binary data of the excel file
-                        let workBook = XLSX.read(data,{             //This converts the binary in rows and coloumns(all columns one after another in single column)
-                            type: 'binary'});
-                        var excelData = XLSX.utils.sheet_to_row_object_array(workBook.Sheets[workBook.SheetNames[0]]);   //1 column all values get converted in rows and colomns
-                        let flag = true   //flag is for messagebox to come one time only
-                        for (var i = 0; i < excelData.length; i++) {
-                                        that.getOwnerComponent().getModel().create("/Y24_C_TEST", excelData[i], {
-                                            success: function(oData) {
-                                                if(flag == true){
-                                                MessageBox.success("Data Uploaded Successfully");
-                                                }
-                                                flag = false;
-                                            },
-                                            error: function(oError) {
-                                                if(flag == true){
-                                                MessageBox.error("Failed to upload data");
-                                            }
-                                            flag = false;
-                                            }
-                                        });
-                                    }
-                                };
-                                contentReader.readAsBinaryString(this.filePath);   //(2)
+            //         let contentReader = new FileReader();         //Inbuild class needed to read any file
+            //         contentReader.onload = function(oEvent){   //File will load from oEvent with params here in this oEvent(1)
+            //             let data = oEvent.target.result;         //(3)This holds the binary data of the excel file
+            //             let workBook = XLSX.read(data,{             //This converts the binary in rows and coloumns(all columns one after another in single column)
+            //                 type: 'binary'});
+            //             var excelData = XLSX.utils.sheet_to_row_object_array(workBook.Sheets[workBook.SheetNames[0]]);   //1 column all values get converted in rows and colomns
+            //             let flag = true   //flag is for messagebox to come one time only
+            //             for (var i = 0; i < excelData.length; i++) {
+            //                             that.getOwnerComponent().getModel().create("/Y24_C_TEST", excelData[i], {
+            //                                 success: function(oData) {
+            //                                     if(flag == true){
+            //                                     MessageBox.success("Data Uploaded Successfully");
+            //                                     }
+            //                                     flag = false;
+            //                                 },
+            //                                 error: function(oError) {
+            //                                     if(flag == true){
+            //                                     MessageBox.error("Failed to upload data");
+            //                                 }
+            //                                 flag = false;
+            //                                 }
+            //                             });
+            //                         }
+            //                     };
+            //                     contentReader.readAsBinaryString(this.filePath);   //(2)
                     
-            },
+            // },
 
             onPressCreate: function () {
                 // Load the fragment only if it hasn't been loaded yet
