@@ -17,7 +17,6 @@
                 <sf:ControlConfiguration id="sfCusttomer" visibleInAdvancedArea="true" key="customer_nm"></sf:ControlConfiguration>
               </sf:controlConfiguration>
             </sf:SmartFilterBar>
-            
           </f:DynamicPageHeader>
         </f:header>
         <f:content>
