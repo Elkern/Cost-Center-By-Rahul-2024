@@ -7,15 +7,13 @@
   xmlns:u="sap.ui.unified"
   xmlns:sf="sap.ui.comp.smartfilterbar" controllerName="rahul.controller.View1" displayBlock="true">
   <Page id="page" title="{i18n>title.CostCenterReport}" class="sapUiMediumMarginBegin" enableScrolling="false" showHeader="true">
-  
     <content>
-      <f:DynamicPage id="idDynamicPage" headerPinned="true"  headerExpanded="true" fitContent="true">
-            
+      <f:DynamicPage id="idDynamicPage"  headerExpanded="true" fitContent="true">  
         <f:header>
-          <f:DynamicPageHeader>
+          <f:DynamicPageHeader >
             <sf:SmartFilterBar id="sfDemo" showClearOnFB="true" filterContainerWidth="15.22em" entitySet="Y24_C_TEST" enableBasicSearch="true" persistencyKey="SmartFilter_Explored">
               <sf:controlConfiguration>
-                <sf:ControlConfiguration id="sfProduct" change="onProductFilterChange"  visibleInAdvancedArea="true" key="product_nm"></sf:ControlConfiguration>
+                <sf:ControlConfiguration id="sfProduct"  change="onProductFilterChange"  visibleInAdvancedArea="true" key="product_nm"></sf:ControlConfiguration>
                 <sf:ControlConfiguration id="sfCusttomer" visibleInAdvancedArea="true" key="customer_nm"></sf:ControlConfiguration>
               </sf:controlConfiguration>
             </sf:SmartFilterBar>
@@ -23,10 +21,10 @@
           </f:DynamicPageHeader>
         </f:header>
         <f:content>
-          <smartTable:SmartTable width="100%" initiallyVisible="product_id"  smartFilterId="sfDemo"
-           fitContainer="true" persistencyKey="SmartTableAnalytical_Explored" 
-           tableType="ResponsiveTable" header="Smart Table" enableAutoBinding="true"
-            id="stDemo" entitySet="Y24_C_TEST"  placeToolbarInTable="true" >
+          <smartTable:SmartTable width="100%"   smartFilterId="sfDemo" showTablePersonalisation="true" useVariantManagement="true"
+           fitContainer="true" persistencyKey="SmartTableAnalytical_Explored" useTablePersonalisation="true"
+           tableType="ResponsiveTable" showRowCount="true" header="Smart Table" enableAutoBinding="false"
+            id="stDemo" entitySet="Y24_C_TEST"  placeToolbarInTable="true" class="sapUiResponsiveContentPadding">
             <smartTable:customToolbar>
               <OverflowToolbar id="sttbDemo">
                 <ToolbarSpacer id="sttbsDemo"/>
@@ -35,7 +33,7 @@
                 <u:FileUploader  buttonOnly="true" change="onChagnefupl"  buttonText="Excel Upload"></u:FileUploader>
               </OverflowToolbar>
             </smartTable:customToolbar>
-            <Table id="stTable" mode="MultiSelect"  growing="true" growingScrollToLoad="false" sticky="ColumnHeaders,HeaderToolbar">
+            <Table id="stTable" mode="MultiSelect" growingThreshold="20"  growing="true" growingScrollToLoad="false" sticky="ColumnHeaders,HeaderToolbar">
               <items >
                 <ColumnListItem type="Navigation"  press="onItemPress" >
                 </ColumnListItem>
