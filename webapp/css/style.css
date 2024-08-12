@@ -2,6 +2,26 @@
 .verticalSpacer {
     height: 2rem; /* Adjust height as needed */
 }
+.onRotation {
+    width: 50px; /* Set the width */
+    height: 50px; /* Set the height */
+    border-radius: 50%; /* Makes the button circular */
+    background-color: #cedb1f; /* Button background color */
+    color: rgb(227, 25, 25); /* Button text color */
+    border: none; /* Remove border */
+    font-size: 16px; /* Font size */
+    animation: rotate 2s linear infinite; /* Rotate animation */
+}
+
+/* Rotation animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 
 

@@ -17,8 +17,8 @@ builder:
           destination: S4S
           url: http://sakshambasis1.techwit.com:8005
         app:
-          name: TWZONE
+          name: ZTW_DIME
           package: $tmp
-          transport: ""
+          transport: ''
         exclude:
           - /test/

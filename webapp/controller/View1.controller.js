@@ -3,8 +3,7 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
     "sap/m/MessageBox",
-    "sap/ui/export/Spreadsheet",
-   
+    "sap/ui/export/Spreadsheet", 
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -15,6 +14,13 @@ sap.ui.define([
         return Controller.extend("rahul.controller.View1", {
             onInit: function () {
                 that = this;
+                var oModel = that.getOwnerComponent().getModel("secService");
+            var Emp = "1";
+                oModel.read("/Employee_master(EmpId='"+ Emp +"')",{
+                    success: function(oData){
+                        console.log(oData);
+                    }
+                })
             },
             onItemPress: function(oEvent) {
                 let sProductId = oEvent.getSource().getBindingContext().getProperty("product_id");
@@ -22,17 +28,12 @@ sap.ui.define([
                 let oRoute = sap.ui.core.UIComponent.getRouterFor(that);
                  oRoute.navTo("CostCenterReporting",{
                    obj_id : InputValue1
-                 });
-                 
+                 });  
             },
             onDownloadExcelTemplate: function() {
-                // Define the column configuration
                 var aCols = this.createColumnConfig();
                 var oBinding1 = this.getView().getModel().getBindings("/");
                 oBinding1.length= 1;
-                // var oBinding1= [];
-    
-                // Create settings for the spreadsheet
                 var oSettings = {
                     fileName: "Template.xlsx",
                     workbook: { 
@@ -44,8 +45,6 @@ sap.ui.define([
                     },
                     dataSource: oBinding1
                 };
-    
-                // Create a new Spreadsheet instance
                 var oSheet = new Spreadsheet(oSettings);
                 oSheet.build()
                     .then(function() {
@@ -55,34 +54,36 @@ sap.ui.define([
                         oSheet.destroy(); // Clean up
                     });
             },
-    
             createColumnConfig: function() {
                 return [
                     {
-                        label: 'Name', // Header displayed in Excel
-                        property: 'name', // Property name for the data (not used for empty data)
+                        label: 'product_id', // Header displayed in Excel
+                        property: 'product_id', // Property name for the data (not used for empty data)
                         type: 'string' // Data type
                     },
                     {
-                        label: 'Email',
-                        property: 'email',
+                        label: 'product_nm',
+                        property: 'product_nm',
                         type: 'string'
                     },
                     {
-                        label: 'Age',
-                        property: 'age',
+                        label: 'customer_nm',
+                        property: 'customer_nm',
                         type: 'number'
                     },
                     {
-                        label: 'Address',
-                        property: 'address',
+                        label: 'cost_price',
+                        property: 'cost_price',
+                        type: 'string'
+                    },
+                    {
+                        label: 'sales_price',
+                        property: 'sales_price',
                         type: 'string'
                     }
                     // Add more columns as needed
                 ];
             },
-    
-            
             onPressDelete:function(){
 
                 //ALT 1
@@ -104,7 +105,6 @@ sap.ui.define([
             fnChar: function(oEvent){
              oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/[^a-zA-Z\s]]/g, ''));
             },
-           
             onChagnefupl: function(oEvent){
                 let filePath  = oEvent.getParameter("files")[0];  //It fetches parameters of files (Name,Size,Type)
                 let contentReader = new FileReader();         //Inbuild class needed to read any file
@@ -133,36 +133,6 @@ sap.ui.define([
                             };
                             contentReader.readAsBinaryString(filePath);   //(2)
             },
-            // onExcelUpload:function(){
-             
-            //         let contentReader = new FileReader();         //Inbuild class needed to read any file
-            //         contentReader.onload = function(oEvent){   //File will load from oEvent with params here in this oEvent(1)
-            //             let data = oEvent.target.result;         //(3)This holds the binary data of the excel file
-            //             let workBook = XLSX.read(data,{             //This converts the binary in rows and coloumns(all columns one after another in single column)
-            //                 type: 'binary'});
-            //             var excelData = XLSX.utils.sheet_to_row_object_array(workBook.Sheets[workBook.SheetNames[0]]);   //1 column all values get converted in rows and colomns
-            //             let flag = true   //flag is for messagebox to come one time only
-            //             for (var i = 0; i < excelData.length; i++) {
-            //                             that.getOwnerComponent().getModel().create("/Y24_C_TEST", excelData[i], {
-            //                                 success: function(oData) {
-            //                                     if(flag == true){
-            //                                     MessageBox.success("Data Uploaded Successfully");
-            //                                     }
-            //                                     flag = false;
-            //                                 },
-            //                                 error: function(oError) {
-            //                                     if(flag == true){
-            //                                     MessageBox.error("Failed to upload data");
-            //                                 }
-            //                                 flag = false;
-            //                                 }
-            //                             });
-            //                         }
-            //                     };
-            //                     contentReader.readAsBinaryString(this.filePath);   //(2)
-                    
-            // },
-
             onPressCreate: function () {
                 // Load the fragment only if it hasn't been loaded yet
                 if (!that._oDialog) {
@@ -188,7 +158,6 @@ sap.ui.define([
                             oInput.setValue(""); // Clear the input field
                         }
                     });
-
             },
             onSavePress: function(){
                 let fragObj = {

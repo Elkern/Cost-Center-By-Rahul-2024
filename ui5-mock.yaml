@@ -35,6 +35,14 @@ server:
             metadataXmlPath: ./webapp/localService/metadata.xml
             mockdataRootPath: ./webapp/localService/data
           - urlPath: /sap/opu/odata/sap/Y24_SB_TEST/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/metadata.xml
+            mockdataRootPath: ./webapp/localService/mockdata
+          - urlPath: /sap/opu/odata/sap/Y30M_SB_TRAVEL/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/metadata.xml
+            mockdataRootPath: ./webapp/localService/mockdata
+          - urlPath: /sap/opu/odata/sap/ZSB_EMPMST/
             metadataPath: ./webapp/localService/metadata.xml
             mockdataPath: ./webapp/localService/mockdata
             generateMockData: true
@@ -43,3 +51,5 @@ server:
             urlPath: Annotation/Anno1.xml
           - localPath: ./webapp/localService/mainService_Annotation.xml
             urlPath: /destinations/S4S/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='Y24_SB_TEST_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/secondService_Annotation.xml
+            urlPath: /destinations/S4S/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='Y30M_SB_TRAVEL_VAN',Version='0001')/$value/
