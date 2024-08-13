@@ -27,6 +27,7 @@
             <smartTable:customToolbar>
               <OverflowToolbar id="sttbDemo">
                 <ToolbarSpacer id="sttbsDemo"/>
+                <Button text="Navigation" press="onNewNAv"></Button>
                 <Button id="btnTemplate" press="onDownloadExcelTemplate" type="Emphasized" text="Excel Template"/>
                 <Button id="btnDelete" press="onPressDelete" type="Emphasized" icon="sap-icon://delete"/>
                 <Button id="btnCreate" press="onPressCreate" type="Emphasized" text="Create"/>

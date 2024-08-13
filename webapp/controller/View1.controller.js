@@ -22,6 +22,30 @@ sap.ui.define([
                     }
                 })
             },
+            onNewNAv:function(){
+                sap.ushell.Container.getServiceAsync("CrossApplicationNavigation").then(function (oService) {
+                    // oService.createEmptyAppStateAsync(this.getOwnerComponent()).then(function (ref){
+                    // ref.setData(this._oAppState);
+                    // ref.save();
+                    oService.hrefForExternalAsync({
+                        target: {
+                            semanticObject: "ztws_iplsc",
+                            action: "display"
+                        }
+                        // params: {
+                        //     flag: "D",
+                        //     icquotNumber: oQuotationNumber
+                        // }
+                    }).then(function (sHref) {
+                        oService.toExternal({
+                            target: {
+                                shellHash: sHref
+                            }
+                        });
+                    });
+                    // }.bind(this));
+                });
+            },
             onItemPress: function(oEvent) {
                 let sProductId = oEvent.getSource().getBindingContext().getProperty("product_id");
                 let InputValue1 = sProductId;
